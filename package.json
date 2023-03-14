@@ -1,0 +1,26 @@
+{
+  "name": "chat_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "chat.js",
+  "scripts": {
+    "build": "node_modules/.bin/webpack --mode production",
+    "serve": "webpack serve --mode development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.76.0",
+    "webpack-cli": "^5.0.1",
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "firebase": "^9.17.2"
+  }
+}

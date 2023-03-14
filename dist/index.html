@@ -1,0 +1,165 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;600;700;800&family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/ca40c9bc2d.css" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Viney chat app</title>
+</head>
+<body>
+
+
+<!-- <div class="container-fluid">
+  <div class="row">
+    
+    <div class="col-lg-6">
+      <img src="/pictures/chat app 3.jpg" class="landing-image" alt="">
+    </div>
+
+    <div class="col-lg-6">
+      <div class="container">
+        <form>
+          <div class="form-group text-center">
+            <img src="company_icon.png" alt="Company icon">
+          </div>
+          <div class="form-group">
+            <p>Hey there! Enter the information you entered while registering.</p>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </div>
+        </form>
+    </div>
+    
+  </div>
+</div> -->
+
+
+
+<div class="container">
+
+
+  <div class="form">
+      <div class="form-group text-center">
+        <h1 class="brand">Chatig<span><i class="fa-solid fa-comment comment-icon"></i></span></h1>
+      </div>
+
+    <form class="create-account-form"> 
+      <div class="form-group reg-section">
+        <h2>Create an account</h2>
+        <p class="intro-text">Let's get you started with chatigo.</p>
+      </div>
+      <div class="form-group name-down">
+        <label for="name">Name:</label>
+        <input type="name" class="form-control" id="name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password">
+      </div>
+      <div class="form-group d-grid gap-2">
+        <button type="submit" class="btn" id="login-button">Create account</button>
+      </div>
+      <p class="account-text">Already have an account? <a href="#" class="show-login-link">Sign in</a></p>
+    </form>  
+
+    <form class="login-form"> 
+      <div class="form-group login-section">
+        <h2>Sign in</h2>
+        <p class="intro-text">Enter the information you entered while registering.</p>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password">
+      </div>
+      <div class="form-group d-grid gap-2">
+        <button type="submit" class="btn" id="login-button">Login</button>
+      </div>
+      <p class="account-text">Don't have an account? <a href="#" class="show-create-account-link">Create an account</a></p>
+    </form>
+
+  </div>
+
+
+  <div class="image"></div>
+
+
+</div>
+
+
+
+<!-- container & title  -->
+  <div class="my-4 chat-interface hidden">
+    <h1 class="my-4 text-center">Viney Chat</h1>
+
+    <!-- buttons for chatrooms -->
+    <div class="chat-rooms mb-3 text-center">
+        <div class="my-2">Choose a chatroom:</div>
+        <button class="btn" id="general">#general</button>
+        <button class="btn" id="gaming">#gaming</button>
+        <button class="btn" id="music">#music</button>
+        <button class="btn" id="ninjas">#ninjas</button>
+    </div>
+
+    <!-- chat list / window -->
+    <div class="chat-window">
+        <ul class="chat-list list-group"></ul>
+      </div>
+
+      
+      <!-- new chat form -->
+      <form class="new-chat my-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Your message:</div>
+          </div>
+          <input type="text" id="message" class="form-control" required>
+          <div class="input-group-append">
+            <input type="submit" class="btn" value="send">
+          </div>
+        </div>
+      </form>
+
+
+      <!-- update name form -->
+      <form class="new-name my-3">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Update name:</div>
+          </div>
+          <input type="text" id="name" class="form-control" required>
+          <div class="input-group-append">
+            <input type="submit" class="btn" value="update">
+          </div>
+        </div>
+        <div class="update-mssg text-center my-3"></div>
+      </form>
+
+  </div>
+    
+  <script src="https://kit.fontawesome.com/ca40c9bc2d.js" crossorigin="anonymous"></script>
+  <script src="bundle.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
