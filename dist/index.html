@@ -14,7 +14,7 @@
 <body>
 
 
-<div class="container">
+<div class="container landing-page">
 
 
   <div class="form">
@@ -42,7 +42,11 @@
       <div class="form-group d-grid gap-2">
         <button type="submit" class="btn" id="login-button">Create account</button>
       </div>
+
+      <div class="signup-update text-center my-3"></div>
+
       <p class="account-text">Already have an account? <a href="#" class="show-login-link">Sign in</a></p>
+
     </form>  
 
     <form class="login-form"> 
@@ -62,6 +66,8 @@
         <button type="submit" class="btn" id="login-button">Login</button>
       </div>
       <p class="account-text">Don't have an account? <a href="#" class="show-create-account-link">Create an account</a></p>
+
+      <div class="login-update text-center my-3"></div>
     </form>
 
   </div>
@@ -75,16 +81,16 @@
 
 
 <!-- container & title  -->
-  <div class="my-4 chat-interface hidden">
+  <div class="my-4 chat-interface-hidden col-12">
     <h1 class="my-4 text-center">Viney Chat</h1>
 
     <!-- buttons for chatrooms -->
     <div class="chat-rooms mb-3 text-center">
         <div class="my-2">Choose a chatroom:</div>
-        <button class="btn" id="general">#general</button>
-        <button class="btn" id="gaming">#gaming</button>
-        <button class="btn" id="music">#music</button>
-        <button class="btn" id="ninjas">#ninjas</button>
+        <button class="btn chat-btn" id="general">#general</button>
+        <button class="btn chat-btn" id="gaming">#gaming</button>
+        <button class="btn chat-btn" id="music">#music</button>
+        <button class="btn chat-btn" id="ninjas">#ninjas</button>
     </div>
 
     <!-- chat list / window -->
@@ -101,23 +107,11 @@
           </div>
           <input type="text" id="message" class="form-control" required>
           <div class="input-group-append">
-            <input type="submit" class="btn" value="send">
+            <input type="submit" class="chat-btn" value="send">
           </div>
         </div>
       </form>
 
-
-      <!-- update name form -->
-      <form class="new-name my-3">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Update name:</div>
-          </div>
-          <input type="text" id="name" class="form-control" required>
-          <div class="input-group-append">
-            <input type="submit" class="btn" value="update">
-          </div>
-        </div>
         <div class="update-mssg text-center my-3"></div>
       </form>
 

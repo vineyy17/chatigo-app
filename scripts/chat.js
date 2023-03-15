@@ -2,9 +2,15 @@
 import { initializeApp } from 'firebase/app'
 import {
     getFirestore, collection, serverTimestamp, Timestamp,
-    addDoc, onSnapshot, doc, where, query, orderBy
+    addDoc, onSnapshot, doc, where, query, orderBy, getDoc,
+    updateDoc, getDocs
 } from 'firebase/firestore'
-
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signOut, signInWithEmailAndPassword,
+    onAuthStateChanged
+} from 'firebase/auth'
 
 const firebaseConfig = {
     apiKey: process.env.API_KEY,
@@ -20,6 +26,7 @@ const firebaseConfig = {
 
   // init services
   const db = getFirestore();
+  const auth = getAuth();
 
 
 class Chatroom {
@@ -74,15 +81,18 @@ const { ChatUI } = require("./ui.js");
 // chat queries
 const chatList = document.querySelector(".chat-list");
 const newChatForm = document.querySelector(".new-chat");
-const newNameForm = document.querySelector(".new-name");
 const updateMssg = document.querySelector(".update-mssg");
 const rooms = document.querySelector(".chat-rooms");
+const chatInterface = document.querySelector(".chat-interface-hidden")
 
 // form queries
 const createAccountForm = document.querySelector('.create-account-form');
 const loginForm = document.querySelector('.login-form');
 const showLoginLink = document.querySelector(".show-login-link");
 const showCreateAccountLink = document.querySelector('.show-create-account-link');
+const landingInterface = document.querySelector('.landing-page')
+const signUpMessage = document.querySelector(".signup-update")
+
 
 // form manipulations
 
@@ -100,6 +110,37 @@ showLoginLink.addEventListener('click', (e) => {
     createAccountForm.style.display = 'block';
   });
 
+  // Sign users up
+  createAccountForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const name = createAccountForm.name.value
+    const email = createAccountForm.email.value
+    const password = createAccountForm.password.value
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+        console.log('user created:', cred.user)
+        createAccountForm.reset();
+        const userName = name.trim();
+        landingInterface.style.display = 'none';
+        chatInterface.style.display = 'block';
+        chatroom.updateName(userName);
+        updateMssg.textContent = `Sign up successful. You are now logged in as ${userName}`
+        setTimeout(() => updateMssg.textContent = '', 3000);
+    })
+
+    .catch((err) => {
+        if (err.code === 'auth/weak-password') {
+            const errorMessage = err.message;
+            const passwordErrorMessage = errorMessage.replace('Firebase: ', '').replace(' (auth/weak-password)', '');
+            console.log(passwordErrorMessage);
+            signUpMessage.textContent = `${passwordErrorMessage}`
+            setTimeout(() => signUpMessage.textContent = '', 5000);
+        }
+    });
+  });
+
 
 // add a new chat
 newChatForm.addEventListener('submit', e => {
@@ -112,18 +153,18 @@ newChatForm.addEventListener('submit', e => {
     .catch(err => console.log(err));
 });
 
-// update uername
-newNameForm.addEventListener('submit', e => {
-    e.preventDefault();
-    // update name via form
-    const newName = newNameForm.name.value.trim();
-    chatroom.updateName(newName);
-    // reset the form
-    newNameForm.reset();
-    // show then hide the update message
-    updateMssg.textContent = `Your name has been updated to ${newName}`
-    setTimeout(() => updateMssg.textContent = '', 3000);
-});
+// // update username
+// newNameForm.addEventListener('submit', e => {
+//     e.preventDefault();
+//     // update name via form
+//     const newName = newNameForm.name.value.trim();
+//     chatroom.updateName(newName);
+//     // reset the form
+//     newNameForm.reset();
+//     // show then hide the update message
+//     updateMssg.textContent = `Your name has been updated to ${newName}`
+//     setTimeout(() => updateMssg.textContent = '', 3000);
+// });
 
 // update the chat room
 rooms.addEventListener('click', e => {
