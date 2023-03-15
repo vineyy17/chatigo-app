@@ -131,14 +131,25 @@ showLoginLink.addEventListener('click', (e) => {
     })
 
     .catch((err) => {
+        console.log(err.code, err.message)
         if (err.code === 'auth/weak-password') {
-            const errorMessage = err.message;
-            const passwordErrorMessage = errorMessage.replace('Firebase: ', '').replace(' (auth/weak-password)', '');
-            console.log(passwordErrorMessage);
+            console.log(err.message);
+            let passwordErrorMessage = "Password should be at least 6 characters";
             signUpMessage.textContent = `${passwordErrorMessage}`
+            setTimeout(() => signUpMessage.textContent = '', 5000);
+        } else if (err.code === 'auth/invalid-email') {
+            console.log(err.message);
+            let emailErrorMessage = "Enter a valid email";
+            signUpMessage.textContent = `${emailErrorMessage}`
+            setTimeout(() => signUpMessage.textContent = '', 5000);
+        } else if (err.code === 'auth/email-already-in-use') {
+            console.log(err.message);
+            let emailInUseErrorMessage = "This email is already in use, login instead.";
+            signUpMessage.textContent = `${emailInUseErrorMessage}`
             setTimeout(() => signUpMessage.textContent = '', 5000);
         }
     });
+
   });
 
 
