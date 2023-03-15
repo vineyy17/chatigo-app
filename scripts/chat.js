@@ -1,7 +1,3 @@
-// adding new chat documents
-// setting up a real-time listener to get new chats
-// updating the username
-// updating the room
 
 import { initializeApp } from 'firebase/app'
 import {
@@ -11,13 +7,13 @@ import {
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAcIf96q7RY7k9OdWSUxgM1QeRa0cwInH4",
-    authDomain: "fir-9-babysteps.firebaseapp.com",
-    projectId: "fir-9-babysteps",
-    storageBucket: "fir-9-babysteps.appspot.com",
-    messagingSenderId: "754659710507",
-    appId: "1:754659710507:web:150a64f6ea36b848597c6e"
-  };
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID
+  }
 
   //init firebase app
   initializeApp(firebaseConfig)

@@ -1,4 +1,5 @@
-const path = require('path')
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 
 module.exports = {
@@ -11,22 +12,44 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, 'dist')
         },
-        port: 8080,
+        port: 5000,
         open: true,
         hot: true,
         compress: true,
         historyApiFallback: true
     },
     module: {
-        rules: [{
+        rules: [
+            {
             test: /\.js$/,
             exclude: /node_modules/,
             use: {
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/preset-env']
-                }
-            }
-        }]
-    }
-    };
+                presets: ['@babel/preset-env'],
+                plugins: [
+                    ['@babel/plugin-transform-runtime', { regenerator: true }],
+                    ['@babel/plugin-proposal-class-properties', { loose: true }],
+                    'lodash',
+                ],
+                },
+            },
+            },
+            {
+            test: /\.env$/,
+            use: [
+                {
+                loader: 'raw-loader',
+                options: {
+                    esModule: false,
+                },
+                },
+            ],
+            },
+        ],
+        },
+
+    plugins: [
+        new Dotenv()
+    ]
+};
