@@ -30,7 +30,16 @@ module.exports = {
                 plugins: [
                     ['@babel/plugin-transform-runtime', { regenerator: true }],
                     ['@babel/plugin-proposal-class-properties', { loose: true }],
-                    'lodash',
+                    [
+                        "@babel/plugin-proposal-private-property-in-object",
+                        { "loose": true }
+                      ],
+                      
+                      [
+                        "@babel/plugin-proposal-private-methods",
+                        { "loose": true }
+                      ]
+                      
                 ],
                 },
             },
