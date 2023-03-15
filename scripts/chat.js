@@ -152,6 +152,29 @@ showLoginLink.addEventListener('click', (e) => {
 
   });
 
+//   Login Users
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = loginForm.name.value
+    const email = loginForm.email.value
+    const password = loginForm.password.value
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+        console.log('user signed in:', cred.user)
+        loginForm.reset()
+        const userName = name.trim();
+        landingInterface.style.display = 'none';
+        chatInterface.style.display = 'block';
+        chatroom.updateName(userName);
+        updateMssg.textContent = `Login successful. You are now logged in as ${userName}`
+        setTimeout(() => updateMssg.textContent = '', 3000);
+    })
+    .catch((err) => {
+        console.log(err.message)
+    })
+})
+
 
 // add a new chat
 newChatForm.addEventListener('submit', e => {
