@@ -1,7 +1,15 @@
 
 .chat-interface-hidden{
-  max-width: 600px;
   display: none;
+}
+
+.chat-ui {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 600px; /* adjust as needed */
 }
 
 body{
@@ -9,7 +17,7 @@ body{
 } 
 
 .chat-btn{
-  background: #43d9be;
+  background: #FF4F5A;
   color: white;
   outline: none !important;
   box-shadow: none !important;
@@ -26,10 +34,10 @@ body{
   color: #999;
 }
 
-.landing-image{
+/* .landing-image{
   width: 100%;
   height: 100%;
-}
+} */
 
 .container {
   display: grid;

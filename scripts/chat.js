@@ -85,6 +85,7 @@ const newChatForm = document.querySelector(".new-chat");
 const updateMssg = document.querySelector(".update-mssg");
 const rooms = document.querySelector(".chat-rooms");
 const chatInterface = document.querySelector(".chat-interface-hidden")
+const chatDiv = document.querySelector(".my-4.chat-interface-hidden.col-12")
 
 // form queries
 const createAccountForm = document.querySelector('.create-account-form');
@@ -127,6 +128,8 @@ showLoginLink.addEventListener('click', (e) => {
         const userName = name.trim();
         landingInterface.style.display = 'none';
         chatInterface.style.display = 'block';
+        chatDiv.classList.remove('chat-interface');
+        chatDiv.classList.add('chat-ui');
         chatroom.updateName(userName);
         updateMssg.textContent = `Sign up successful. You are now logged in as ${userName}`
         setTimeout(() => updateMssg.textContent = '', 3000);
@@ -168,6 +171,8 @@ loginForm.addEventListener('submit', (e) => {
         const userName = name.trim();
         landingInterface.style.display = 'none';
         chatInterface.style.display = 'block';
+        chatDiv.classList.remove('chat-interface');
+        chatDiv.classList.add('chat-ui');
         chatroom.updateName(userName);
         updateMssg.textContent = `Login successful. You are now logged in as ${userName}`
         setTimeout(() => updateMssg.textContent = '', 3000);
@@ -192,7 +197,6 @@ loginForm.addEventListener('submit', (e) => {
         }
     })
 })
-
 
 // add a new chat
 newChatForm.addEventListener('submit', e => {
