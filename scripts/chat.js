@@ -78,6 +78,7 @@ class Chatroom {
 const { ChatUI } = require("./ui.js");
 
 // DOM queries
+
 // chat queries
 const chatList = document.querySelector(".chat-list");
 const newChatForm = document.querySelector(".new-chat");
@@ -92,6 +93,7 @@ const showLoginLink = document.querySelector(".show-login-link");
 const showCreateAccountLink = document.querySelector('.show-create-account-link');
 const landingInterface = document.querySelector('.landing-page')
 const signUpMessage = document.querySelector(".signup-update")
+const loginMessage = document.querySelector(".login-update")
 
 
 // form manipulations
@@ -171,7 +173,23 @@ loginForm.addEventListener('submit', (e) => {
         setTimeout(() => updateMssg.textContent = '', 3000);
     })
     .catch((err) => {
-        console.log(err.message)
+        console.log(err.code, err.message)
+        if (err.code === 'auth/wrong-password') {
+            console.log(err.message);
+            let passwordErrorMessage = "The password you entered is incorrect";
+            loginMessage.textContent = `${passwordErrorMessage}`
+            setTimeout(() => loginMessage.textContent = '', 5000);
+        } else if (err.code === 'auth/invalid-email') {
+            console.log(err.message);
+            let emailErrorMessage = "Enter a valid email.";
+            loginMessage.textContent = `${emailErrorMessage}`
+            setTimeout(() => loginMessage.textContent = '', 5000);
+        } else if (err.code === 'auth/user-not-found') {
+            console.log(err.message);
+            let userNotFoundErrorMessage = "This user does not exist.";
+            loginMessage.textContent = `${userNotFoundErrorMessage}`
+            setTimeout(() => loginMessage.textContent = '', 5000);
+        }
     })
 })
 
