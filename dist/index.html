@@ -86,7 +86,7 @@
 
 <!-- container & title  -->
   <div class="my-4 chat-interface-hidden col-12">
-    <h1 class="my-4 text-center">Viney Chat</h1>
+    <h2 class="my-4 text-center brand">Chatig<span><i class="fa-solid fa-comment message-icon"></i></span></h2>
 
     <!-- buttons for chatrooms -->
     <div class="chat-rooms mb-3 text-center">
@@ -94,7 +94,7 @@
         <button class="btn chat-btn" id="general">#general</button>
         <button class="btn chat-btn" id="gaming">#gaming</button>
         <button class="btn chat-btn" id="music">#music</button>
-        <button class="btn chat-btn" id="ninjas">#ninjas</button>
+        <button class="btn chat-btn" id="ninjas">football</button>
     </div>
 
     <!-- chat list / window -->
@@ -106,12 +106,9 @@
       <!-- new chat form -->
       <form class="new-chat my-3">
         <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">Your message:</div>
-          </div>
-          <input type="text" id="message" class="form-control" required>
+          <input type="text" id="message" class="form-control" placeholder="Your message" required>
           <div class="input-group-append">
-            <input type="submit" class="chat-btn" value="send">
+            <button type="submit" class="chat-btn-send"><i class="fa-solid fa-paper-plane"></i></button>
           </div>
         </div>
       </form>
