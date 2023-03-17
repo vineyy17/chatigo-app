@@ -121,7 +121,13 @@ showLoginLink.addEventListener('click', (e) => {
     const email = createAccountForm.email.value
     const password = createAccountForm.password.value
 
-    createUserWithEmailAndPassword(auth, email, password)
+    if (name === ""){
+        console.log("Enter name field");
+        const noNameErrorMessage = "Please fill in the avatar field.";
+        signUpMessage.textContent = `${noNameErrorMessage}`
+        setTimeout(() => signUpMessage.textContent = '', 5000);
+    } else {
+        createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
         console.log('user created:', cred.user)
         createAccountForm.reset();
@@ -152,8 +158,14 @@ showLoginLink.addEventListener('click', (e) => {
             let emailInUseErrorMessage = "This email is already in use, login instead.";
             signUpMessage.textContent = `${emailInUseErrorMessage}`
             setTimeout(() => signUpMessage.textContent = '', 5000);
+        } else if (createAccountForm.name.value === '') {
+            let nameErrorMessage = "Please enter a value for Avatar.";
+            signUpMessage.textContent = `${nameErrorMessage}`
+            setTimeout(() => signUpMessage.textContent = '', 5000);
         }
     });
+
+    }
 
   });
 
@@ -164,7 +176,13 @@ loginForm.addEventListener('submit', (e) => {
     const email = loginForm.email.value
     const password = loginForm.password.value
 
-    signInWithEmailAndPassword(auth, email, password)
+    if (name === ""){
+        console.log("Enter name field");
+        const noNameErrorMessage = "Please fill in the avatar field.";
+        loginMessage.textContent = `${noNameErrorMessage}`
+        setTimeout(() => loginMessage.textContent = '', 5000);
+    } else {
+        signInWithEmailAndPassword(auth, email, password)
     .then((cred) => {
         console.log('user signed in:', cred.user)
         loginForm.reset()
@@ -194,8 +212,9 @@ loginForm.addEventListener('submit', (e) => {
             let userNotFoundErrorMessage = "This user does not exist.";
             loginMessage.textContent = `${userNotFoundErrorMessage}`
             setTimeout(() => loginMessage.textContent = '', 5000);
-        }
+        } 
     })
+    }  
 })
 
 // add a new chat
