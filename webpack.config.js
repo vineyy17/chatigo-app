@@ -12,7 +12,7 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, 'dist')
         },
-        port: 5000,
+        port: 8080,
         open: true,
         hot: true,
         compress: true,
@@ -27,20 +27,6 @@ module.exports = {
                 loader: 'babel-loader',
                 options: {
                 presets: ['@babel/preset-env'],
-                plugins: [
-                    ['@babel/plugin-transform-runtime', { regenerator: true }],
-                    ['@babel/plugin-proposal-class-properties', { loose: true }],
-                    [
-                        "@babel/plugin-proposal-private-property-in-object",
-                        { "loose": true }
-                      ],
-                      
-                      [
-                        "@babel/plugin-proposal-private-methods",
-                        { "loose": true }
-                      ]
-                      
-                ],
                 },
             },
             },

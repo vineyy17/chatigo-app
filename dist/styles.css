@@ -25,6 +25,9 @@ body{
 .chat-btn:focus{
   outline: none !important;
 }
+.chat-btn:hover{
+  color: white;
+}
 
 .logout-btn{
   background: #FF4F5A;
@@ -35,6 +38,10 @@ body{
 .logout-btn:focus{
   outline: none !important;
 }
+.logout-btn:hover{
+  color: white;
+}
+
 .button-div{
   margin-left: 43%;
   margin-top: 10%;
@@ -110,7 +117,7 @@ body{
 }
 
 #login-button:focus{
-  outline:  none !important;
+  outline: none !important;
 }
 
 .form{

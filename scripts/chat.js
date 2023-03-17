@@ -93,7 +93,7 @@ const createAccountForm = document.querySelector('.create-account-form');
 const loginForm = document.querySelector('.login-form');
 const showLoginLink = document.querySelector(".show-login-link");
 const showCreateAccountLink = document.querySelector('.show-create-account-link');
-const landingInterface = document.querySelector('.landing-page')
+const landingInterface = document.querySelector('.container')
 const signUpMessage = document.querySelector(".signup-update")
 const loginMessage = document.querySelector(".login-update")
 
@@ -222,8 +222,13 @@ loginForm.addEventListener('submit', (e) => {
 logOutButton.addEventListener('click', () => {
     signOut(auth)
     .then(() => {
-      chatInterface.style.display = 'none';
-      landingInterface.style.display = 'block';
+    if (window.matchMedia('(min-width: 200px) and (max-width: 1000px)').matches) {
+        landingInterface.style.display = 'block';
+        chatInterface.style.display = 'none';
+        } else {
+        landingInterface.style.display = 'grid';
+        chatInterface.style.display = 'none';
+        }
     })
     .catch((err) => {
         console.log(err.message);
@@ -240,19 +245,6 @@ newChatForm.addEventListener('submit', e => {
     })
     .catch(err => console.log(err));
 });
-
-// // update username
-// newNameForm.addEventListener('submit', e => {
-//     e.preventDefault();
-//     // update name via form
-//     const newName = newNameForm.name.value.trim();
-//     chatroom.updateName(newName);
-//     // reset the form
-//     newNameForm.reset();
-//     // show then hide the update message
-//     updateMssg.textContent = `Your name has been updated to ${newName}`
-//     setTimeout(() => updateMssg.textContent = '', 3000);
-// });
 
 // update the chat room
 rooms.addEventListener('click', e => {
