@@ -30,11 +30,11 @@
         <label for="name">Avatar:</label>
         <input type="name" class="form-control" id="name" required>
       </div>
-      <div class="form-group">
+      <div class="form-group label-section">
         <label for="email">Email:</label>
         <input type="email" class="form-control" id="email">
       </div>
-      <div class="form-group">
+      <div class="form-group label-section">
         <label for="password">Password:</label>
         <input type="password" class="form-control" id="password">
       </div>
@@ -52,16 +52,16 @@
       <div class="form-group login-section">
         <h2>Sign in</h2>
         <p class="intro-text">Enter the information you entered while registering.</p>
-        <div class="form-group">
+        <div class="form-group name-down">
           <label for="name">Avatar:</label>
           <input type="name" class="form-control" id="name" required>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group label-section">
         <label for="email">Email:</label>
         <input type="email" class="form-control" id="email">
       </div>
-      <div class="form-group">
+      <div class="form-group label-section">
         <label for="password">Password:</label>
         <input type="password" class="form-control" id="password">
       </div>
@@ -86,18 +86,18 @@
 
 <!-- container & title  -->
   <div class="my-4 chat-interface-hidden col-12">
-    <h2 class="my-4 text-center brand">Chatig<span><i class="fa-solid fa-comment message-icon"></i></span></h2>
+    <h2 class="my-4 text-center chat-brand">Chatig<span><i class="fa-solid fa-comment message-icon"></i></span></h2>
 
     <!-- buttons for chatrooms -->
     <div class="chat-rooms mb-3 text-center">
         <div class="my-2">Choose a chatroom:</div>
         <button class="btn chat-btn" id="general">#general</button>
-        <button class="btn chat-btn" id="gaming">#gaming</button>
         <button class="btn chat-btn" id="music">#music</button>
-        <button class="btn chat-btn" id="ninjas">#football</button>
+        <button class="btn chat-btn" id="football">#football</button>
     </div>
 
     <!-- chat list / window -->
+    <div class="chat-section">
     <div class="chat-window">
         <ul class="chat-list list-group"></ul>
       </div>
@@ -111,9 +111,17 @@
             <button type="submit" class="chat-btn-send"><i class="fa-solid fa-paper-plane"></i></button>
           </div>
         </div>
+      </div>
+
       </form>
 
         <div class="update-mssg text-center my-3"></div>
+
+        <div class="button-div">
+          <button class="btn logout-btn">Logout</button>
+        </div>
+      
+
       </form>
 
   </div>

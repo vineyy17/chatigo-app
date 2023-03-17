@@ -86,6 +86,7 @@ const updateMssg = document.querySelector(".update-mssg");
 const rooms = document.querySelector(".chat-rooms");
 const chatInterface = document.querySelector(".chat-interface-hidden")
 const chatDiv = document.querySelector(".my-4.chat-interface-hidden.col-12")
+const logOutButton = document.querySelector(".logout-btn")
 
 // form queries
 const createAccountForm = document.querySelector('.create-account-form');
@@ -214,8 +215,20 @@ loginForm.addEventListener('submit', (e) => {
             setTimeout(() => loginMessage.textContent = '', 5000);
         } 
     })
-    }  
+    }
 })
+
+// log users out
+logOutButton.addEventListener('click', () => {
+    signOut(auth)
+    .then(() => {
+      chatInterface.style.display = 'none';
+      landingInterface.style.display = 'block';
+    })
+    .catch((err) => {
+        console.log(err.message);
+    })
+});
 
 // add a new chat
 newChatForm.addEventListener('submit', e => {

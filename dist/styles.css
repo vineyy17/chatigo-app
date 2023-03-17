@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  max-width: 600px; /* adjust as needed */
+  max-width: 600px; 
 }
 
 body{
@@ -25,6 +25,21 @@ body{
 .chat-btn:focus{
   outline: none !important;
 }
+
+.logout-btn{
+  background: #FF4F5A;
+  color: white;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.logout-btn:focus{
+  outline: none !important;
+}
+.button-div{
+  margin-left: 43%;
+  margin-top: 10%;
+}
+
 
 .chat-btn-send{
   background: #FF4F5A;
@@ -149,5 +164,61 @@ body{
 .create-account-form{
   display: block;
 }
+
+@media (min-width: 200px) and (max-width: 1000px){
+  .container {
+    display: block;
+  }
+  
+  .form {
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 330px !important; 
+  }
+  
+  .image {
+    display: none;
+  }
+
+  .brand{
+    text-align: left !important;
+  }
+
+  .form{
+    margin-top: 13%;
+  }
+
+  .label-section{
+    margin-top: 4%;
+  }
+
+  .chat-ui{
+    max-width: 350px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 10% !important;
+  }
+
+  .chat-brand{
+    text-align: center !important;
+  }
+
+  .update-mssg{
+    font-size: 0.8rem;
+  }
+
+  .button-div{
+    margin-left: 40%;
+    margin-top: 10%;
+  }
+
+}
+
+
+
 
 
