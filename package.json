@@ -4,7 +4,7 @@
   "description": "",
   "main": "chat.js",
   "scripts": {
-    "build": "node_modules/.bin/webpack --mode production",
+    "build": "webpack --mode production",
     "serve": "webpack serve --mode development"
   },
   "keywords": [],
