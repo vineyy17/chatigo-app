@@ -1,9 +1,7 @@
-
 import { initializeApp } from 'firebase/app'
 import {
     getFirestore, collection, serverTimestamp, Timestamp,
-    addDoc, onSnapshot, doc, where, query, orderBy, getDoc,
-    updateDoc, getDocs
+    addDoc, onSnapshot, where, query, orderBy
 } from 'firebase/firestore'
 import {
     getAuth,
@@ -46,7 +44,6 @@ class Chatroom {
             username: this.username,
             created_at: timestamp.toDate()
         };
-        // save the chat document
         const response = await addDoc(this.chats, chat)
         return response;
     }
@@ -84,9 +81,9 @@ const chatList = document.querySelector(".chat-list");
 const newChatForm = document.querySelector(".new-chat");
 const updateMssg = document.querySelector(".update-mssg");
 const rooms = document.querySelector(".chat-rooms");
-const chatInterface = document.querySelector(".chat-interface-hidden")
-const chatDiv = document.querySelector(".my-4.chat-interface-hidden.col-12")
-const logOutButton = document.querySelector(".logout-btn")
+const chatInterface = document.querySelector(".chat-interface-hidden");
+const chatDiv = document.querySelector(".my-4.chat-interface-hidden.col-12");
+const logOutButton = document.querySelector(".logout-btn");
 
 // form queries
 const createAccountForm = document.querySelector('.create-account-form');
@@ -123,14 +120,20 @@ showLoginLink.addEventListener('click', (e) => {
     const password = createAccountForm.password.value
 
     if (name === ""){
-        console.log("Enter name field");
-        const noNameErrorMessage = "Please fill in the avatar field.";
+        const noNameErrorMessage = "Please fill in the avatar field";
         signUpMessage.textContent = `${noNameErrorMessage}`
+        setTimeout(() => signUpMessage.textContent = '', 5000);
+    } else if (email === ""){
+        const noEmailErrorMessage = "Please enter an email";
+        signUpMessage.textContent = `${noEmailErrorMessage}`
+        setTimeout(() => signUpMessage.textContent = '', 5000);
+    } else if (password === ""){
+        const noPasswordErrorMessage = "Please enter a password";
+        signUpMessage.textContent = `${noPasswordErrorMessage}`
         setTimeout(() => signUpMessage.textContent = '', 5000);
     } else {
         createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
-        console.log('user created:', cred.user)
         createAccountForm.reset();
         const userName = name.trim();
         landingInterface.style.display = 'none';
@@ -140,37 +143,36 @@ showLoginLink.addEventListener('click', (e) => {
         chatroom.updateName(userName);
         updateMssg.textContent = `Sign up successful. You are now logged in as ${userName}`
         setTimeout(() => updateMssg.textContent = '', 3000);
+        localStorage.setItem('sessionToken', '#@12345');
     })
 
     .catch((err) => {
         console.log(err.code, err.message)
         if (err.code === 'auth/weak-password') {
-            console.log(err.message);
             let passwordErrorMessage = "Password should be at least 6 characters";
             signUpMessage.textContent = `${passwordErrorMessage}`
             setTimeout(() => signUpMessage.textContent = '', 5000);
         } else if (err.code === 'auth/invalid-email') {
-            console.log(err.message);
             let emailErrorMessage = "Enter a valid email";
             signUpMessage.textContent = `${emailErrorMessage}`
             setTimeout(() => signUpMessage.textContent = '', 5000);
         } else if (err.code === 'auth/email-already-in-use') {
-            console.log(err.message);
             let emailInUseErrorMessage = "This email is already in use, login instead.";
             signUpMessage.textContent = `${emailInUseErrorMessage}`
             setTimeout(() => signUpMessage.textContent = '', 5000);
-        } else if (createAccountForm.name.value === '') {
-            let nameErrorMessage = "Please enter a value for Avatar.";
-            signUpMessage.textContent = `${nameErrorMessage}`
+        } else if (createAccountForm.password.value === '') {
+            let nilErrorMessage = "Please enter a password";
+            signUpMessage.textContent = `${nilErrorMessage}`
             setTimeout(() => signUpMessage.textContent = '', 5000);
         }
     });
 
-    }
+    };
 
   });
 
-//   Login Users
+//   Log users in
+
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = loginForm.name.value
@@ -178,14 +180,20 @@ loginForm.addEventListener('submit', (e) => {
     const password = loginForm.password.value
 
     if (name === ""){
-        console.log("Enter name field");
         const noNameErrorMessage = "Please fill in the avatar field.";
         loginMessage.textContent = `${noNameErrorMessage}`
+        setTimeout(() => loginMessage.textContent = '', 5000);
+    } else if (email === ""){
+        const noEmailErrorMessage = "Please enter an email";
+        loginMessage.textContent = `${noEmailErrorMessage}`
+        setTimeout(() => loginMessage.textContent = '', 5000);
+    } else if (password === ""){
+        const noPasswordErrorMessage = "Please enter a password.";
+        loginMessage.textContent = `${noPasswordErrorMessage}`
         setTimeout(() => loginMessage.textContent = '', 5000);
     } else {
         signInWithEmailAndPassword(auth, email, password)
     .then((cred) => {
-        console.log('user signed in:', cred.user)
         loginForm.reset()
         const userName = name.trim();
         landingInterface.style.display = 'none';
@@ -195,40 +203,67 @@ loginForm.addEventListener('submit', (e) => {
         chatroom.updateName(userName);
         updateMssg.textContent = `Login successful. You are now logged in as ${userName}`
         setTimeout(() => updateMssg.textContent = '', 3000);
+        localStorage.setItem('sessionToken', '#@12345');
     })
     .catch((err) => {
         console.log(err.code, err.message)
         if (err.code === 'auth/wrong-password') {
-            console.log(err.message);
             let passwordErrorMessage = "The password you entered is incorrect";
             loginMessage.textContent = `${passwordErrorMessage}`
             setTimeout(() => loginMessage.textContent = '', 5000);
         } else if (err.code === 'auth/invalid-email') {
-            console.log(err.message);
             let emailErrorMessage = "Enter a valid email.";
             loginMessage.textContent = `${emailErrorMessage}`
             setTimeout(() => loginMessage.textContent = '', 5000);
         } else if (err.code === 'auth/user-not-found') {
-            console.log(err.message);
             let userNotFoundErrorMessage = "This user does not exist.";
             loginMessage.textContent = `${userNotFoundErrorMessage}`
             setTimeout(() => loginMessage.textContent = '', 5000);
         } 
-    })
+    });
+    };
+});
+
+window.onload = function() {
+    const sessionToken = localStorage.getItem('sessionToken');
+    if (sessionToken) {
+      landingInterface.style.display = 'none';
+      chatInterface.style.display = 'block';
+      chatDiv.classList.remove('chat-interface');
+      chatDiv.classList.add('chat-ui');
+    } else {
+      updateDisplay();
     }
-})
+  };
+
+// function to update display based on screen size
+const updateDisplay = () => {
+    if (window.matchMedia('(min-width: 200px) and (max-width: 1000px) and (orientation: portrait)').matches) {
+        landingInterface.style.display = 'block';
+        chatInterface.style.display = 'none';
+    } else if (window.matchMedia('(min-width: 200px) and (max-width: 1000px) and (orientation: landscape)').matches) {
+        landingInterface.style.display = 'grid';
+        chatInterface.style.display = 'none'; 
+    } else {
+        landingInterface.style.display = 'grid';
+        chatInterface.style.display = 'none';
+    };
+};
+
+const listener = () => {
+    if (chatInterface.style.display == 'none') {
+      updateDisplay();
+    }
+  }
+  
+window.addEventListener('resize', listener);
 
 // log users out
 logOutButton.addEventListener('click', () => {
     signOut(auth)
     .then(() => {
-    if (window.matchMedia('(min-width: 200px) and (max-width: 1000px)').matches) {
-        landingInterface.style.display = 'block';
-        chatInterface.style.display = 'none';
-        } else {
-        landingInterface.style.display = 'grid';
-        chatInterface.style.display = 'none';
-        }
+        updateDisplay();
+        localStorage.removeItem('sessionToken');
     })
     .catch((err) => {
         console.log(err.message);
@@ -255,70 +290,13 @@ rooms.addEventListener('click', e => {
     }
 })
 
-// check local storage for a name
 const username = localStorage.username ? localStorage.username : "anon";
 
 // class instances
 const chatroom = new Chatroom('general', username);
 const chatUI = new ChatUI(chatList);
 
-chatroom.getChats((data) => chatUI.render(data))
+chatroom.getChats((data) => chatUI.render(data));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const chatroom = new Chatroom('general', 'blaine')
-
-// chatroom.addChat('testing out')
-//  .then(() => console.log('chat added'))
-//  .catch(err => console.log(err));
-
-// chatroom.getChats((data) => {
-//      console.log(data);
-// })
-
-// setTimeout(() => {
-//     chatroom.updateRoom('gaming');
-//     chatroom.updateName('Fifafreak');
-//     chatroom.getChats((data) => {
-//         console.log(data);
-//    });
-//    chatroom.addChat('hello gamers')
-// }, 3000)
 
