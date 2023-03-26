@@ -60,7 +60,6 @@ class Chatroom {
     }
     updateName(username){
         this.username = username;
-        localStorage.setItem('username', username);
     }
     updateRoom(room){
         this.room = room;
@@ -133,7 +132,7 @@ showLoginLink.addEventListener('click', (e) => {
         setTimeout(() => signUpMessage.textContent = '', 5000);
     } else {
         createUserWithEmailAndPassword(auth, email, password)
-    .then((cred) => {
+    .then(() => {
         createAccountForm.reset();
         const userName = name.trim();
         landingInterface.style.display = 'none';
@@ -193,7 +192,7 @@ loginForm.addEventListener('submit', (e) => {
         setTimeout(() => loginMessage.textContent = '', 5000);
     } else {
         signInWithEmailAndPassword(auth, email, password)
-    .then((cred) => {
+    .then(() => {
         loginForm.reset()
         const userName = name.trim();
         landingInterface.style.display = 'none';
@@ -290,7 +289,7 @@ rooms.addEventListener('click', e => {
     }
 })
 
-const username = localStorage.username ? localStorage.username : "anon";
+const username = "";
 
 // class instances
 const chatroom = new Chatroom('general', username);

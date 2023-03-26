@@ -1,3 +1,4 @@
+
 body{
   font-family: 'Poppins', sans-serif;
 } 
@@ -15,29 +16,29 @@ body{
   max-width: 600px; 
 }
 
-.chat-btn{
+.chat-rooms .chat-btn{
   background: #FF4F5A;
   color: white;
-  outline: none !important;
-  box-shadow: none !important;
+  outline: none;
+  box-shadow: none;
 }
-.chat-btn:focus{
+.chat-rooms .chat-btn:focus{
   outline: none !important;
 }
 .chat-btn:hover{
   color: white;
 }
 
-.logout-btn{
+.button-div .logout-btn{
   background: #FF4F5A;
   color: white;
-  outline: none !important;
-  box-shadow: none !important;
+  outline: none;
+  box-shadow: none;
 }
-.logout-btn:focus{
-  outline: none !important;
+.button-div .logout-btn:focus{
+  outline: none;
 }
-.logout-btn:hover{
+.button-div .logout-btn:hover{
   color: white;
 }
 
@@ -47,11 +48,11 @@ body{
 }
 
 
-.chat-btn-send{
+.new-chat .chat-btn-send{
   background: #FF4F5A;
   color: white;
-  outline: none !important;
-  box-shadow: none !important;
+  outline: none;
+  box-shadow: none;
   height: 2.4rem;
   width: 2.4rem;
   border-bottom-width: 0px;
@@ -60,8 +61,8 @@ body{
   border-top-width: 0px;
   border-radius: 3px;
 }
-.chat-btn-send:focus{
-  outline: none !important;
+.new-chat .chat-btn-send:focus{
+  outline: none;
 }
 
 
@@ -81,6 +82,11 @@ body{
 
 .form {
   grid-column: 1 / 2;
+}
+
+form .form-control:focus {
+  border-color: #FF4F5A;
+  box-shadow: none;
 }
 
 .image {
@@ -108,15 +114,15 @@ body{
 }
 
 #login-button{
-  background: #FF4F5A !important;
+  background: #FF4F5A;
   color: white;
-  outline:  none !important;
-  box-shadow: none !important;
+  outline:  none;
+  box-shadow: none;
   margin-top: 1.3rem;
 }
 
 #login-button:focus{
-  outline: none !important;
+  outline: none;
 }
 
 .form{
@@ -147,7 +153,7 @@ body{
   font-weight: 600;
 }
 .show-login-link:hover{
-  color: #FF4F5A;
+  color: black;
 }
 
 .show-create-account-link{
@@ -156,7 +162,7 @@ body{
   font-weight: 600;
 }
 .show-create-account-link:hover{
-  color: #FF4F5A;
+  color: black;
 }
 
 .login-section{
@@ -180,15 +186,15 @@ body{
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    max-width: 330px !important; 
+    max-width: 330px; 
   }
   
   .image {
     display: none;
   }
 
-  .brand{
-    text-align: left !important;
+  .form .brand{
+    text-align: left;
   }
 
   .form{
@@ -200,7 +206,7 @@ body{
   }
 
   .chat-ui{
-    max-width: 350px !important;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -308,71 +314,7 @@ body{
   
 }
 
-/* @media (max-width: 800px) and (max-height: 800px) {
-  .container {
-    display: block;
-  }
   
-  .form {
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 400px !important; 
-  }
-  
-  .image {
-    display: none;
-  }
-
-  .brand{
-    text-align: left !important;
-    font-size: 2rem;
-  }
-
-  .heading{
-    margin-top: 2rem;
-    font-size: 1.5rem;
-  }
-
-  .form{
-    margin-top: 13%;
-  }
-
-  .label-section{
-    margin-top: 4%;
-  }
-
-  .chat-ui{
-    max-width: 450px !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    margin-top: 10% !important;
-  }
-
-  .chat-brand{
-    text-align: center !important;
-  }
-
-  .update-mssg{
-    font-size: 1rem;
-  }
-
-  .button-div{
-    margin-left: 40%;
-    margin-top: 10%;
-  }
-
-  .comment-icon{
-    font-size: 1.4rem;
-  }
-  
-  .message-icon{
-    font-size: 1.2rem;
-  }
-} */
 
 
 
